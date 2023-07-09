@@ -9,6 +9,7 @@ import Classes.Empregado;
 import Classes.Estagiario;
 import ClassesAux.Data;
 import ClassesAux.Arquivo;
+import java.util.List;
 
 /**
  *
@@ -21,10 +22,14 @@ public class Contratação extends javax.swing.JFrame {
      */
     
     Departamento dep;
+    List<Estagiario> listaEstagiarios;
+    List<Empregado> listaEmpregado;
     
-    public Contratação(Departamento dep) {
+    public Contratação(Departamento dep,  List<Estagiario> listaEstagiarios, List<Empregado> listaEmpregado) {
         initComponents();
         this.dep = dep;
+        this.listaEmpregado = listaEmpregado;
+        this.listaEstagiarios = listaEstagiarios;
     }
 
     /**
@@ -276,14 +281,17 @@ public class Contratação extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        // função que cria um objeto, seja estagiario ou empregado
+        // primeiro se verifica se nao tem nenhum campo nulo para continuar
         if(!(jTextField1.getText().isEmpty()) && !(jTextField2.getText().isEmpty()) && !(jTextField3.getText().isEmpty()) && !(jTextField4.getText().isEmpty()) && 
                 !(jTextField5.getText().isEmpty()) && !(jTextField6.getText().isEmpty()) && !(jTextField7.getText().isEmpty())){
             if(Cargo.getSelectedItem().toString().equals("Estagiário")){
+                //verificamos o tipo de criação do objeto
                 String[] valores = jTextField3.getText().split(":");
                 int valor1 = Integer.parseInt(valores[0]);
                 int valor2 = Integer.parseInt(valores[1]);
                 int valor3 = Integer.parseInt(valores[2]);
+                //faremos algumas validações agora para a data e valores
                 try {
                     Data dataAtual = new Data(Data.getDataAtual());
                     Data dataValor = new Data(valor1, valor2, valor3);
@@ -306,6 +314,7 @@ public class Contratação extends javax.swing.JFrame {
                         if (estagiario != null) {
                             jLabel8.setText("Cadastrado!");
                             Arquivo.adicionarEstagiario(estagiario, "C:\\Users\\links\\Documents\\NetBeansProjects\\ProjetoSistema\\New Folder\\Projeto-Lp-III\\src\\main\\java\\Arquivos\\Estagiarios.txt");
+                            listaEstagiarios.add(estagiario);
                         } else {
                             jLabel8.setText("Campos inválidos");
                         }
@@ -341,6 +350,7 @@ public class Contratação extends javax.swing.JFrame {
                         if (empregado != null) {
                             jLabel8.setText("Cadastrado!");
                             Arquivo.adicionarEmpregado(empregado, "C:\\Users\\links\\Documents\\NetBeansProjects\\ProjetoSistema\\New Folder\\Projeto-Lp-III\\src\\main\\java\\Arquivos\\Empregados.txt");
+                            listaEmpregado.add(empregado);
                         } else {
                             jLabel8.setText("Campos inválidos");
                         }

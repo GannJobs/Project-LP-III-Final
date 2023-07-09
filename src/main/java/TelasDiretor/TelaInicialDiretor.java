@@ -33,6 +33,7 @@ public class TelaInicialDiretor extends javax.swing.JFrame {
         initComponents();
     }
 
+    //construtor padrao da tela
     public TelaInicialDiretor(Diretor diretor, List<Departamento> listaDepartamento,List<Estagiario> listaEstagiarios, List<Empregado> listaEmpregado, List<Gerente> listaGerente) {
         initComponents();
         jLabel2.setText("Diretor(a), " + diretor.getNome());
@@ -126,6 +127,7 @@ public class TelaInicialDiretor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //botao que gera uma tela que expoe os dados do objeto
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Dados dados = new Dados(this.diretor);
@@ -133,6 +135,7 @@ public class TelaInicialDiretor extends javax.swing.JFrame {
         dados.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    //botao que abre a interface de gerenciamento da empresa passando as listas como parametro, função da diretoria
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         Direção direcao = new Direção(this.listaDepartamento, this.listaEstagiarios, this.listaEmpregado, this.listaGerente);

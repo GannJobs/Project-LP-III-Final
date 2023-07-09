@@ -11,6 +11,7 @@ import ClassesAux.Data;
 import java.util.ArrayList;
 import java.util.List;
 import ClassesAux.Arquivo;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -31,6 +32,7 @@ public class DepartamentoT extends javax.swing.JFrame {
         initComponents();
     }
     
+    //construtor padrao que recebe as listas para manuseio
     public DepartamentoT(Departamento dep, List<Estagiario> listaEstagiarios, List<Empregado> listaEmpregado) {
         initComponents();
         this.dep = dep;
@@ -40,6 +42,7 @@ public class DepartamentoT extends javax.swing.JFrame {
         AttTable();
     }
     
+    //função que atualiza a tabela com os funcionarios APENAS deste departamento
     private void AttTable(){
         DefaultTableModel model = (DefaultTableModel) funcs.getModel();
         model.setRowCount(0);
@@ -288,19 +291,19 @@ public class DepartamentoT extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        Contratação c = new Contratação(dep);
+        // função que abre a tela de contratação, as contratações sempre são para seu respectivo departamento
+        Contratação c = new Contratação(dep, listaEstagiarios, listaEmpregado);
         c.setLocationRelativeTo(null);
         c.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        //função que troca o cargo, criando e destruindo objetos
         //pego o codigo
         int n = Integer.parseInt(jTextField2.getText());
         //encontro o codigo
-        Estagiario estagiario = Estagiario.buscarDepartamentoPorCodigo(listaEstagiarios, n);
-        Empregado empregado = Empregado.buscarDepartamentoPorCodigo(listaEmpregado, n);
+        Estagiario estagiario = Estagiario.buscarPorCodigo(listaEstagiarios, n);
+        Empregado empregado = Empregado.buscarPorCodigo(listaEmpregado, n);
         if (estagiario == null){
             //criar estagiario
             Estagiario estagiarioC = new Estagiario(empregado.getNome(), empregado.getSenha(), empregado.getIdade(), empregado.getEmail(), empregado.getTelefone(), empregado.getCPF(), empregado.getDataN(), Data.getDataAtual(), "Estagiario", 12, empregado.getDepartamento());
@@ -311,7 +314,7 @@ public class DepartamentoT extends javax.swing.JFrame {
             //remove da outra lista
             listaEmpregado.remove(empregado);
             //apagar estagiario
-            Arquivo.removerEmpregado(empregado.getCodigo(), "C:\\Users\\links\\Documents\\NetBeansProjects\\ProjetoSistema\\New Folder\\Projeto-Lp-III\\src\\main\\java\\Arquivos\\Empregados.txt");
+            Arquivo.removerEmpregado(empregado.getNome(), "C:\\Users\\links\\Documents\\NetBeansProjects\\ProjetoSistema\\New Folder\\Projeto-Lp-III\\src\\main\\java\\Arquivos\\Empregados.txt");
             jLabel3.setText("Cargo Alterado!");
         }else if(empregado == null) {
             //criar empregado
@@ -323,7 +326,7 @@ public class DepartamentoT extends javax.swing.JFrame {
             //remove da outra lista
             listaEstagiarios.remove(estagiario);
             //apagar empregado
-            Arquivo.removerEmpregado(estagiario.getCodigo(), "C:\\Users\\links\\Documents\\NetBeansProjects\\ProjetoSistema\\New Folder\\Projeto-Lp-III\\src\\main\\java\\Arquivos\\Estagiarios.txt");
+            Arquivo.removerEmpregado(estagiario.getNome(), "C:\\Users\\links\\Documents\\NetBeansProjects\\ProjetoSistema\\New Folder\\Projeto-Lp-III\\src\\main\\java\\Arquivos\\Estagiarios.txt");
             jLabel3.setText("Cargo Alterado!");
         }else{
             jLabel3.setText("Funcionário não exite!");
@@ -333,20 +336,22 @@ public class DepartamentoT extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        // função para excluir um usuario
         //mando o codigo do usuario e encontro
         int n = Integer.parseInt(jTextField1.getText());
-
-        Estagiario estagiario = Estagiario.buscarDepartamentoPorCodigo(listaEstagiarios, n);
-        Empregado empregado = Empregado.buscarDepartamentoPorCodigo(listaEmpregado, n);
-        if(estagiario != null){
-            //apago do arquivo
-            Arquivo.removerEmpregado(estagiario.getCodigo(), "C:\\Users\\links\\Documents\\NetBeansProjects\\ProjetoSistema\\New Folder\\Projeto-Lp-III\\src\\main\\java\\Arquivos\\Estagiarios.txt");
+        
+        Estagiario estagiario = Estagiario.buscarPorCodigo(listaEstagiarios, n);
+        Empregado empregado = Empregado.buscarPorCodigo(listaEmpregado, n);
+        if(empregado == null){//tendo o codigo verifico o tipo
+            // e apago do arquivo
+            Arquivo.removerEmpregado(estagiario.getNome(), "C:\\Users\\links\\Documents\\NetBeansProjects\\ProjetoSistema\\New Folder\\Projeto-Lp-III\\src\\main\\java\\Arquivos\\Estagiarios.txt");
+            listaEstagiarios.remove(estagiario);
             jLabel3.setText("Funcionário Demitido!");
         }else 
-            if(empregado != null){
-            //apago do arquivo
-            Arquivo.removerEmpregado(empregado.getCodigo(), "C:\\Users\\links\\Documents\\NetBeansProjects\\ProjetoSistema\\New Folder\\Projeto-Lp-III\\src\\main\\java\\Arquivos\\Empregados.txt");
+            if(estagiario == null){
+            // e apago do arquivo
+            Arquivo.removerEmpregado(empregado.getNome(), "C:\\Users\\links\\Documents\\NetBeansProjects\\ProjetoSistema\\New Folder\\Projeto-Lp-III\\src\\main\\java\\Arquivos\\Empregados.txt");
+            listaEmpregado.remove(empregado);
             jLabel3.setText("Funcionário Demitido!");
         }else{
             jLabel3.setText("Funcionário não exite!");
@@ -355,11 +360,11 @@ public class DepartamentoT extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        // função que abre a tela de alteração de salario mandando um objeto pelo seu codigo unico
         int n = Integer.parseInt(jTextField3.getText());
 
-        Estagiario estagiario = Estagiario.buscarDepartamentoPorCodigo(listaEstagiarios, n);
-        Empregado empregado = Empregado.buscarDepartamentoPorCodigo(listaEmpregado, n);
+        Estagiario estagiario = Estagiario.buscarPorCodigo(listaEstagiarios, n);
+        Empregado empregado = Empregado.buscarPorCodigo(listaEmpregado, n);
         if (estagiario != null){
            EditarSalario es = new EditarSalario(estagiario);
             es.setLocationRelativeTo(null);
@@ -372,12 +377,12 @@ public class DepartamentoT extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // botao com a função necessaria para fechar o Jframe sem fechar todo o programa
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        // botao para att os dados da tabela manualmente
         AttTable();
     }//GEN-LAST:event_jButton2ActionPerformed
 

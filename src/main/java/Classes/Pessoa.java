@@ -10,19 +10,24 @@ public abstract class Pessoa {
     protected String email;
     protected String cpf;  
     protected Data dataNascimento;
+    //Classe mae de todos os objetos derivados de funcionários
     
+    //Construtor sem o telefone
     public Pessoa(String nome, int idade, String cpf, Data dataN){
         this(nome,idade, "sem celular","sem email",cpf,dataN);
     }
-       
+    
+    //Construtor sem o email 
     public Pessoa(String nome, int idade, String telefone, String cpf, Data dataN){
         this(nome,idade,telefone,"sem email",cpf,dataN);
     }
     
+    //Construtor sem o telefone
     public Pessoa(String nome, String email, int idade, String cpf, Data dataN){
         this(nome,idade,"sem celular", email, cpf,dataN);
     }
     
+    //Construtor padrão com todos os campos
     public Pessoa(String nome, int idade, String telefone, String email, String cpf, Data dataN){
         this.nome = nome;
         this.idade = idade;

@@ -29,6 +29,7 @@ public class TelaLogin extends javax.swing.JFrame {
     /**
      * Creates new form TelaLogin
      */
+    //carrego a lista com todos os objetos que iremos utilizar para usar como arqumentos na criação das telas
     List<Diretor> listaDiretor = Arquivo.carregaDiretor("C:\\Users\\links\\Documents\\NetBeansProjects\\ProjetoSistema\\New Folder\\Projeto-Lp-III\\src\\main\\java\\Arquivos\\Diretor.txt");
     List<Gerente> listaGerentes = Arquivo.carregaGerente("C:\\Users\\links\\Documents\\NetBeansProjects\\ProjetoSistema\\New Folder\\Projeto-Lp-III\\src\\main\\java\\Arquivos\\Gerentes.txt");
     List<Empregado> listaEmpregado = Arquivo.carregaEmpregado("C:\\Users\\links\\Documents\\NetBeansProjects\\ProjetoSistema\\New Folder\\Projeto-Lp-III\\src\\main\\java\\Arquivos\\Empregados.txt");
@@ -172,13 +173,14 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        //leitura dos dados para ver se pode
+        //leitura dos dados para ver se encontra os dados que estou passando
         Estagiario estagiario = Estagiario.buscarNome(listaEstagiarios, jTextField1.getText());
         Empregado empregado = Empregado.buscarNome(listaEmpregado, jTextField1.getText());
         Gerente gerente = Gerente.buscarNome(listaGerentes, jTextField1.getText());
         Diretor diretor =  Diretor.buscarNome(listaDiretor, jTextField1.getText());
-        //existindo entra na respectiva tela
+        //existindo entra na respectiva tela do seu cargo, levando algumas listas consigo
         if(estagiario != null){
+            //loga como estagiario
             if(estagiario.getSenha().equals(jTextField2.getText())){
                TelaInicialEstagiario te = new TelaInicialEstagiario(estagiario, Departamento.buscarDepartamentoPorCodigo(listaDepartamento, estagiario.getDepartamento()));
                 te.setLocationRelativeTo(null);
@@ -188,6 +190,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 jLabel4.setText("Senha Incorreta!");
             }
         } else if (empregado != null){
+            //loga como empregado
             if(empregado.getSenha().equals(jTextField2.getText())){
                 TelaInicialMembro tm = new TelaInicialMembro(empregado,Departamento.buscarDepartamentoPorCodigo(listaDepartamento, empregado.getDepartamento()));
                 tm.setLocationRelativeTo(null);
@@ -197,6 +200,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 jLabel4.setText("Senha Incorreta!");
             }
         } else if (gerente != null){
+            //loga como gerente
             if(gerente.getSenha().equals(jTextField2.getText())){
                 TelaInicialGerente tg = new TelaInicialGerente(gerente, Departamento.buscarDepartamentoPorCodigo(listaDepartamento, gerente.getDepartamento()),listaEstagiarios, listaEmpregado);
                 tg.setLocationRelativeTo(null);
@@ -206,6 +210,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 jLabel4.setText("Senha Incorreta!");
             }
         } else if (diretor != null){
+            //loga como diretor
             if(diretor.getSenha().equals(jTextField2.getText())){
                 TelaInicialDiretor telaInicialDiretor = new TelaInicialDiretor(diretor, listaDepartamento, listaEstagiarios, listaEmpregado, listaGerentes);
                 telaInicialDiretor.setLocationRelativeTo(null);

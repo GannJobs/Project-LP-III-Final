@@ -12,25 +12,29 @@ public class Estagiario extends Funcionario implements Pagamento {
     private final double salarioBase = salario;
     private String funcao = "dar baixa na saida de produtos.";
 
+    //Construtor que tem apenas o contato do telefone
     public Estagiario(String nome,String senha, String telefone, int idade, String cpf, Data dataN, Data dataAdmissao, String cargo, int duracaoEstagio, int departamento) {
         super(nome, senha,idade,telefone, cpf, dataN, dataAdmissao, cargo);
         this.duracaoEstagio = duracaoEstagio;
         this.departamento = departamento;
     }
 
+    //Construtor que tem todos os dados de pessoa, funcionario e o adicionais da classe
     public Estagiario(String nome, String senha, int idade,String email, String telefone, String cpf, Data dataN, Data dataAdmissao, String cargo, int duracaoEstagio, int departamento) {
         super(nome, senha, idade, telefone,email, cpf, dataN, dataAdmissao, cargo);
         this.duracaoEstagio = duracaoEstagio;
         this.departamento = departamento;
     }
     
+    //Construtor que utiliza outro objeto
     public Estagiario(Estagiario estagiario){
         super(estagiario.getNome(), estagiario.getSenha(), estagiario.getIdade(),estagiario.getEmail(),estagiario.getTelefone(),estagiario.getCPF(),estagiario.getDataNascimento(),estagiario.getDataAdmissao(), estagiario.getCargo());
         this.departamento = estagiario.getDepartamento();
         this.duracaoEstagio = estagiario.getDuracaoEstagio();
     }
     
-    public static Estagiario buscarDepartamentoPorCodigo(List<Estagiario> listaEstagiarios, int codigoBusca) {
+    //função estática que retorna um objeto a partir da busca do nome, usado em funções da tela para busca
+    public static Estagiario buscarPorCodigo(List<Estagiario> listaEstagiarios, int codigoBusca) {
         for (Estagiario estagiario : listaEstagiarios) {
             if (estagiario.getCodigo() == codigoBusca) {
                 return estagiario; // Retorna o estagiario encontrado
@@ -39,6 +43,7 @@ public class Estagiario extends Funcionario implements Pagamento {
     return null;
     }
     
+    //função estática que retorna um objeto a partir da busca do nome, usado para o login
     public static Estagiario buscarNome(List<Estagiario> listaEstagiarios, String nome) {
         for (Estagiario estagiario : listaEstagiarios) {
             if (estagiario.getNome().equals(nome)) {

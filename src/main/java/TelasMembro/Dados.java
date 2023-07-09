@@ -25,6 +25,7 @@ public class Dados extends javax.swing.JFrame {
         initComponents();
     }
  
+    //construtor que recebe os dados do objeto e atualiza as labels com eles
     public Dados(Empregado empregado, Departamento dep) {
         initComponents();
         jLabel12.setText(empregado.getNome());

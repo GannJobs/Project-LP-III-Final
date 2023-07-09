@@ -23,6 +23,7 @@ public class Dados extends javax.swing.JFrame {
         initComponents();
     }
  
+    //quando crio o Jframe no construtor passo meu objeto e populo os labels com seus dados
     public Dados(Diretor diretor) {
         initComponents();
         jLabel12.setText( diretor.getNome());

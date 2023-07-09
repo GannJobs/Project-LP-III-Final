@@ -4,6 +4,7 @@ package ClassesAux;
 import java.time.LocalDate;
 import java.util.Calendar;
 
+//classe Data estudada durante o semestre e adaptada para o sistema
 public final class Data {
     private int dia;
     private int mes;

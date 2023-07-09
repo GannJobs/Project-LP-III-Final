@@ -30,6 +30,7 @@ public class TelaInicialGerente extends javax.swing.JFrame {
         initComponents();
     }
 
+    //construtor padrão que usa o objeto e listar para preenhcer uns dados e serem usados de parêametros de outras funções
     public TelaInicialGerente(Gerente gerente, Departamento dep, List<Estagiario> listaEstagiarios, List<Empregado> listaEmpregado) {
         initComponents();
         jLabel3.setText("Gerente, " + gerente.getNome());
@@ -127,6 +128,7 @@ public class TelaInicialGerente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //abre a tela onde se expoe os dados do objeto
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Dados dados = new Dados(this.gerente, this.dep);
@@ -134,6 +136,7 @@ public class TelaInicialGerente extends javax.swing.JFrame {
         dados.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    //abre a interface que manipula o departamento mandando as listas para sua manipulação
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         DepartamentoT departamento = new DepartamentoT(this.dep, listaEstagiarios, listaEmpregado);

@@ -10,11 +10,13 @@ import ClassesAux.Data;
 
 public class Departamento {
 
+    //dados base da classe
     private String nome;
     private int codigo;
-    public static int NDeps = 9;
+    public static int NDeps = 0;
     private int gerenteResponsavel;
 
+    //construtor usando o id de um gerente para criação
     public Departamento(String nome, int gerenteResponsavel) {
         NDeps++;
         this.nome = nome;
@@ -22,6 +24,7 @@ public class Departamento {
         this.gerenteResponsavel = gerenteResponsavel;
     }
     
+    //construtor que usa outro departamento
     public Departamento(Departamento dep) {
         NDeps++;
         this.nome = dep.getNome();
@@ -53,6 +56,7 @@ public class Departamento {
         this.gerenteResponsavel = gerenteResponsavel;
     }
     
+    //função que busca um departamento especifico no meio de uma lista e retorna o objeto
     public static Departamento buscarDepartamentoPorCodigo(List<Departamento> listaDepartamentos, int codigoBusca) {
     for (Departamento departamento : listaDepartamentos) {
         if (departamento.getCodigo() == codigoBusca) {

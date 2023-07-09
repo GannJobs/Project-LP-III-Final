@@ -8,6 +8,7 @@ package Classes;
  *
  * @author Binho
  */
+//interface para mexer com o pagamento
 public interface Pagamento {
     boolean Aumento(double valor);
     boolean Desconto(double valor);
