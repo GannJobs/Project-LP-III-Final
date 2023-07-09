@@ -14,13 +14,14 @@ import Classes.Diretor;
 import Classes.Empregado;
 import Classes.Estagiario;
 import Classes.Gerente;
+import javax.swing.JOptionPane;
 
 public abstract class Arquivo {
     // FUNÇOES DE CARREGAR ARQUIVO
     private static List<Empregado> empregados;
     private static List<Estagiario> estagiarios;
 
-
+//retorna uma lista de empregados usada em funções das telas
     public static List<Empregado> carregaEmpregado(String arquivo) {
         empregados = new ArrayList<>();
 
@@ -49,7 +50,7 @@ public abstract class Arquivo {
 
         return empregados;
     }
-
+//retorna uma lista de estagiarios usada em funções das telas
      public static List<Estagiario> carregaEstagiario(String arquivo) {
         estagiarios = new ArrayList<>();
 
@@ -86,7 +87,7 @@ public abstract class Arquivo {
         int ano = Integer.parseInt(partes[2]);
         return new Data(dia, mes, ano);
     }
-    
+//retorna uma lista de gerentes usada em funções das telas    
     public static List<Gerente> carregaGerente(String arquivo) {
     List<Gerente> gerentes = new ArrayList<>();
 
@@ -114,7 +115,7 @@ public abstract class Arquivo {
 
     return gerentes;
     }
-
+//retorna uma lista de diretores usada em funções das telas
      public static List<Diretor> carregaDiretor(String arquivo) {
         List<Diretor> diretores = new ArrayList<>();
 
@@ -142,7 +143,8 @@ public abstract class Arquivo {
         return diretores;
     }
 
-    // FUNÇOES DE ADICIONAR FUNCIONARIO =====================================================================================
+    // FUNÇOES DE ADICIONAR UM FUNCIONARIO NO ARQUIVO ==========================================================================
+    //Adiciona um estagiário no arquivo
     public static boolean adicionarEstagiario(Estagiario estagiario, String arquivo) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(arquivo, true))) {
             String linha = estagiario.getCodigo()+ ","+
@@ -171,7 +173,7 @@ public abstract class Arquivo {
             return false;
         }
     }
-
+    //Adiciona um empregado no arquivo
     public static boolean adicionarEmpregado(Empregado empregado, String arquivo) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(arquivo, true))) {
             String linha = empregado.getCodigo()+ ","+
@@ -199,7 +201,7 @@ public abstract class Arquivo {
             return false;
         }
     }
-
+    //Adiciona um gerente no arquivo
      public static boolean adicionarGerente(Gerente gerente, String arquivo) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(arquivo, true))) {
             String linha = gerente.getCodigo()+ ","+
@@ -227,7 +229,7 @@ public abstract class Arquivo {
             return false;
         }
     }
-
+    //Adiciona um diretor no arquivo
     public static boolean adicionarDiretor(Diretor diretor, String arquivo) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(arquivo, true))) {
             String linha = diretor.getCodigo()+ ","+
@@ -257,8 +259,9 @@ public abstract class Arquivo {
     }
 
     // FUNÇAO DE REMOVER FUNCIONARIO ==============================================================================
-    public static boolean removerEmpregado(int str, String arquivo) {
-        String chave = String.valueOf(str);
+    /*como todos os objetos tem o campo de codigo de chave primaria, e cada um tem seu respectivo arquivo,
+    esta função serve para a chamdada de todos arquivos, exceto os de departamento*/
+    public static boolean removerEmpregado(String str, String arquivo) {
         try {
             File inputFile = new File(arquivo);
             File tempFile = new File("temp.txt");
@@ -271,9 +274,9 @@ public abstract class Arquivo {
            //  ========  busca ==========================
             while ((linha = reader.readLine()) != null) {
                 String[] campos = linha.split(",");
-                String primeiraColuna = campos[0].trim();
+                String primeiraColuna = campos[1].trim();
 
-                if (primeiraColuna.equals(chave)) {
+                if (primeiraColuna.equals(str)) {
                     encontrado = true;
                     continue; // Ignora a linha atual
                 }
@@ -281,7 +284,7 @@ public abstract class Arquivo {
                 writer.write(linha);
                 writer.newLine();
             }
-
+            
             writer.close();
             reader.close();
 
@@ -299,6 +302,7 @@ public abstract class Arquivo {
         }
     }
     // FUNÇAO DE CARREGAR DEPARTAMENTO ===================================================================================
+    //retorna uma lista de departamentos que temos no arquivo
     public static List<Departamento> carregaDepartamentos(String arquivo) {
         List<Departamento> departamentos = new ArrayList<>();
 
@@ -338,8 +342,7 @@ public abstract class Arquivo {
     }
 
     // FUNÇÃO DW ROMOVER DO DEPARTAMENTO ====================================================================================
-    public static boolean removerDepartamento(int codigo, String arquivo) {
-        String chave = String.valueOf(codigo);
+    public static boolean removerDepartamento(String codigo, String arquivo) {
         try {
             File inputFile = new File(arquivo);
             File tempFile = new File("temp.txt");
@@ -352,9 +355,9 @@ public abstract class Arquivo {
 
             while ((linha = reader.readLine()) != null) {
                 String[] campos = linha.split(",");
-                String primeiraColuna = campos[0].trim();
+                String primeiraColuna = campos[1].trim();
 
-                if (primeiraColuna.equals(chave)) {
+                if (primeiraColuna.equals(codigo)) {
                     encontrado = true;
                     continue; // Ignora a linha atual
                 }

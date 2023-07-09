@@ -23,6 +23,7 @@ public class EditarSalario extends javax.swing.JFrame {
         initComponents();
     }
     
+    //construtores que recebem um tipo e atualiza a label com seu respectivo salario
     public EditarSalario(Empregado empregado) {
         initComponents();
         this.empregado = empregado;
@@ -190,15 +191,17 @@ public class EditarSalario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        // função que verifica o tipo do objeto
         if (empregado == null){
-            if (jTextField1.getText() == "0" && jTextField2.getText() == "0"){
+            //uma vez o tipo verificado ela verifica o conteudo dos campos
+            if (jTextField1.getText() == "0" && jTextField2.getText() == "0"){ // caso esteja 0 e 0, n faz nada
                 jLabel1.setText(". . .");
             } else if (jTextField1.getText() != "0" || jTextField2.getText() == "0"){
+                // caso um valor esteja na casa de aumento recebe ele e faz os calculos usando a interface para definir o novo salario
                 double valor = Double.parseDouble(jTextField1.getText());
                 if(estagiario.Aumento(valor)){
                     jLabel1.setText("Novo Salário: R$" + estagiario.getSalario());
-                }else{
+                }else{ //caso sejam valores invalidos nos campos
                     jLabel1.setText("Valores inválidos!");
                 }
             } else if (jTextField1.getText() == "0" || jTextField2.getText() != "0"){
@@ -208,7 +211,7 @@ public class EditarSalario extends javax.swing.JFrame {
                 }else{
                     jLabel1.setText("Valores inválidos!");
                 }
-            }else{
+            }else{ // manda resetar os valores para padrão para realizar a operação
                 jLabel1.setText("Não pode alterar ambos, deixe um em 0 e altere o outro");
             }
         }else{
