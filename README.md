@@ -33,7 +33,7 @@ O projeto de Gerenciamento de Funcionários em Java é uma aplicação que permi
 ## Objetivo:
 ### Aplicar os conceitos de Programação Orientada a Objetos (POO)✅
 #### Checklists:
-✅ Herança/herança múltipla: Funcionario, Empregado, Estagiario, Diretor e Gerente
+✅ Herança: Funcionario, Empregado, Estagiario, Diretor e Gerente
 
 ✅ Polimorfismo:(Paramêtrico) Sobrecarga de Métodos, (De Subclasse) Diretor, Empregado, Estagiario, Funcionario, Gerente e Pessoa 
 
