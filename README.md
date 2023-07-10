@@ -2,7 +2,7 @@
 ## Descrição do Projeto de Gerenciamento de Funcionários em Java
 O projeto de Gerenciamento de Funcionários em Java é uma aplicação que permite controlar e gerenciar informações relacionadas aos funcionários de uma empresa. Ele é construído com o uso de classes principais como Empregado, Estagiário, Gerente e Diretor, cada uma representando um tipo de funcionário com atributos específicos. O projeto inclui também uma classe para manipulação de arquivos de texto, permitindo a leitura e escrita das informações dos funcionários. Além disso, o sistema possui uma interface gráfica para interação com o usuário, facilitando operações como adicionar, remover, atualizar e exibir informações dos funcionários. O objetivo é oferecer uma solução completa para gerenciar os funcionários de uma empresa de forma eficiente e organizada.
 # Como Rodar!
-0- Altere o caminho dos arquivos passado nas classes TelaLogin (pasta "Telas"), Contratacao(pasta "TelasGerente") e DepartamentoT(pasta "TelasGerente")  
+0- Altere o caminho dos arquivos passado nas classes TelaLogin (pasta "Telas"), Contratacao(pasta "TelasGerente") e DepartamentoT(pasta "TelasGerente") para "src\\main\\java\\Arquivos\\(respectivo arquivo).txt".
 
 1- Rodar a classe "TelaLogin.java"
 
