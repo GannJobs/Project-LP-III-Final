@@ -4,9 +4,11 @@ O projeto de Gerenciamento de Funcionários em Java é uma aplicação que permi
 # Como Rodar!
 0- Altere o caminho dos arquivos passado nas classes TelaLogin (pasta "Telas"), Contratacao(pasta "TelasGerente") e DepartamentoT(pasta "TelasGerente") para "src\\main\\java\\Arquivos\\(respectivo arquivo).txt".
 
-1- Rodar a classe "TelaLogin.java"
+1- Usar um kit de desenvolvimento JDK 17 ou superior nas dependências do projeto para rodar o programa.
 
-2- nome de usuario: (Já esta salvo no arquivo)|(tem outros, fique a vontade para explorar!)
+2- Rodar a classe "TelaLogin.java"
+
+3- nome de usuario: (Já esta salvo no arquivo)|(tem outros, fique a vontade para explorar!)
 
   (Empregado) -> "Danny E"
 
@@ -16,7 +18,7 @@ O projeto de Gerenciamento de Funcionários em Java é uma aplicação que permi
   
   (Diretor) -> "Danny D"
   
-3- Senha:
+4- Senha:
 "123" de todas
 # Algumas das Telas
 
