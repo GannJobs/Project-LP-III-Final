@@ -33,7 +33,7 @@ O projeto de Gerenciamento de Funcionários em Java é uma aplicação que permi
 #### Checklists:
 ✅ Herança/herança múltipla: Funcionario, Empregado, Estagiario, Diretor e Gerente
 
-✅ Polimorfismo (De Subclasse): Diretor, Empregado, Estagiario, Funcionario, Gerente e Pessoa 
+✅ Polimorfismo:(Paramêtrico) Sobrecarga de Métodos, (De Subclasse) Diretor, Empregado, Estagiario, Funcionario, Gerente e Pessoa 
 
 ✅ Classes abstratas: Pessoa e Arquivo
 
